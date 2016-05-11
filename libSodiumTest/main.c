@@ -10,10 +10,10 @@
 #include <string.h>
 #include "sodium.h"
 
-#define MESSAGE (const unsigned char *) "Neil - I hope I get very rich and keep you comfortable forever"
+#define MESSAGE (const unsigned char *) "Neil - Daddy loves you loads."
 #define MESSAGE_LEN ((int) strlen(MESSAGE))
 #define ADDITIONAL_DATA (const unsigned char *) "123456"
-#define ADDITIONAL_DATA_LEN ((int) strlen(ADDITIONAL_DATA))
+#define ADDITIONAL_DATA_LEN 0 //((int) strlen(ADDITIONAL_DATA))
 
 unsigned char nonce[crypto_aead_chacha20poly1305_NPUBBYTES];
 unsigned char key[crypto_aead_chacha20poly1305_KEYBYTES];
@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
     
     crypto_aead_chacha20poly1305_encrypt(ciphertext, &ciphertext_len,
                                          MESSAGE, MESSAGE_LEN,
-                                         ADDITIONAL_DATA, ADDITIONAL_DATA_LEN,
+                                         NULL, ADDITIONAL_DATA_LEN,
                                          NULL, nonce, key);
     
     strncpy(cStr, ciphertext, ciphertext_len);
